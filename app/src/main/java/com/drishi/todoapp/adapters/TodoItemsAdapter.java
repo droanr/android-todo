@@ -29,8 +29,10 @@ public class TodoItemsAdapter extends ArrayAdapter<TodoTask> {
         }
 
         TextView tvDescription = (TextView) convertView.findViewById(R.id.tvDescription);
+        TextView tvPriority = (TextView) convertView.findViewById(R.id.tvPriority);
 
         tvDescription.setText(task.taskDescription);
+        tvPriority.setText(task.taskPriority);
 
         return convertView;
     }

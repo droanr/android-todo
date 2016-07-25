@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, EditItemActivity.class);
                 i.putExtra("item_body", todoItems.get(position).taskDescription);
                 i.putExtra("item_position", position);
+                i.putExtra("item_priority", todoItems.get(position).taskPriority);
                 startActivityForResult(i, REQUEST_CODE);
 
             }
@@ -59,9 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void onAddItem(View view) {
         String todoText = etEditText.getText().toString().trim();
+        String taskPriority = "NORMAL";
         if (todoText.length() != 0) {
-            TodoTask task = new TodoTask(todoText);
-            task.taskDescription = todoText;
+            TodoTask task = new TodoTask(todoText, taskPriority);
             aToDoAdapter.add(task);
             ToDoDatabaseHelper helper = ToDoDatabaseHelper.getInstance(this);
             helper.addItem(task);
@@ -87,10 +88,11 @@ public class MainActivity extends AppCompatActivity {
         aToDoAdapter.notifyDataSetChanged();
     }
 
-    public void updateItem(int position, String data) {
+    public void updateItem(int position, String taskDescription, String taskPriority) {
         ToDoDatabaseHelper helper = ToDoDatabaseHelper.getInstance(this);
         TodoTask todoItem = todoItems.get(position);
-        todoItem.taskDescription = data;
+        todoItem.taskDescription = taskDescription;
+        todoItem.taskPriority = taskPriority;
         helper.updateItem(todoItems.get(position));
         todoItems.set(position, todoItem);
         aToDoAdapter.notifyDataSetChanged();
@@ -100,11 +102,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE && resultCode == 200) {
             String item_body = data.getExtras().getString("item_body").trim();
+            String item_priority = data.getExtras().getString("item_priority");
             int position = data.getExtras().getInt("item_position");
             if (item_body.length() == 0) {
                 removeItem(position);
             } else {
-                updateItem(position, item_body);
+                updateItem(position, item_body, item_priority);
             }
         }
 

@@ -6,8 +6,10 @@ package com.drishi.todoapp.models;
 public class TodoTask {
     public int id;
     public String taskDescription;
+    public String taskPriority;
 
-    public TodoTask(String taskDescription) {
+    public TodoTask(String taskDescription, String taskPriority) {
         this.taskDescription = taskDescription;
+        this.taskPriority = taskPriority;
     }
 }

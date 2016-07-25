@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class ToDoDatabaseHelper extends SQLiteOpenHelper {
     // Database info
     private static final String DATABASE_NAME = "todoDatabase";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 4;
 
     // Table names
     private static final String TABLE_TODO_TASK = "todoTask";
@@ -25,6 +25,7 @@ public class ToDoDatabaseHelper extends SQLiteOpenHelper {
     // TodoTask Table Columns
     private static final String KEY_TODO_ID = "id";
     private static final String KEY_TODO_DESCRIPTION = "taskDescription";
+    private static final String KEY_TODO_PRIORITY = "taskPriority";
 
     private static ToDoDatabaseHelper sInstance;
 
@@ -55,6 +56,7 @@ public class ToDoDatabaseHelper extends SQLiteOpenHelper {
         String CREATE_TODO_TABLE = "CREATE TABLE " + TABLE_TODO_TASK +
                 "(" +
                 KEY_TODO_ID + " INTEGER PRIMARY KEY," + // Define a primary keY
+                KEY_TODO_PRIORITY + " TEXT," +
                 KEY_TODO_DESCRIPTION + " TEXT" +
                 ")";
 
@@ -81,6 +83,7 @@ public class ToDoDatabaseHelper extends SQLiteOpenHelper {
         try {
             ContentValues values = new ContentValues();
             values.put(KEY_TODO_DESCRIPTION, task.taskDescription);
+            values.put(KEY_TODO_PRIORITY, task.taskPriority);
             db.insertOrThrow(TABLE_TODO_TASK, null, values);
             db.setTransactionSuccessful();
         } catch (Exception e) {
@@ -95,6 +98,7 @@ public class ToDoDatabaseHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_TODO_DESCRIPTION, task.taskDescription);
+        values.put(KEY_TODO_PRIORITY, task.taskPriority);
 
         return db.update(TABLE_TODO_TASK, values, KEY_TODO_ID + " = ?", new String[] { String.valueOf(task.id)});
     }
@@ -126,7 +130,8 @@ public class ToDoDatabaseHelper extends SQLiteOpenHelper {
                 do {
                     int id = cursor.getInt(cursor.getColumnIndex(KEY_TODO_ID));
                     String description = cursor.getString(cursor.getColumnIndex(KEY_TODO_DESCRIPTION));
-                    TodoTask task = new TodoTask(description);
+                    String priority = cursor.getString(cursor.getColumnIndex(KEY_TODO_PRIORITY));
+                    TodoTask task = new TodoTask(description, priority);
                     task.id = id;
                     tasks.add(task);
                 } while(cursor.moveToNext());

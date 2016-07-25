@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:weightSum="1">
+
     <TextView
         android:id="@+id/tvDescription"
-        android:layout_width="match_parent"
+        android:layout_width="189dp"
         android:layout_height="wrap_content"
         android:text="Description"
-        android:layout_weight="0.05"
-        android:textColor="#040404"
-        android:textSize="@dimen/abc_text_size_large_material" />
+        android:textColor="@color/abc_search_url_text_pressed"
+        android:textSize="@dimen/abc_text_size_large_material"
+        android:typeface="sans"
+        android:paddingTop="@dimen/abc_text_size_small_material"
+        android:paddingRight="@dimen/abc_text_size_small_material" />
+
+    <TextView
+        android:id="@+id/tvPriority"
+        android:layout_width="106dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_orange_dark"
+        android:textSize="@dimen/abc_text_size_small_material"
+        android:typeface="sans"
+        android:gravity="right"
+        android:layout_weight="0.50"
+        android:textStyle="italic" />
 </LinearLayout>
