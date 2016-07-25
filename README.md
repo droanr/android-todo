@@ -7,8 +7,8 @@ Simple ToDo app to explore the Android framework. Project checklist:
 - Did you create an issue on the repo and include /cc @codepathreview @codepath in the issue body? Not Yet
 
 Suggested Enhancements:
-- (Suggested) Persist the todo items into SQLite instead of a text file - WIP
-- (Suggested) Improve style of the todo items in the list using a custom adapter
+- (Suggested) Persist the todo items into SQLite instead of a text file - Done
+- (Suggested) Improve style of the todo items in the list using a custom adapter - Done
 - (Suggested) Add support for completion due dates for todo items (and display within listview item)
 - (Suggested) Use a DialogFragment instead of new Activity for editing items
 Add support for selecting the priority of each todo item (and display in listview item)

@@ -1,4 +1,4 @@
-package com.drishi.todoapp;
+package com.drishi.todoapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.drishi.todoapp.R;
 
 public class EditItemActivity extends AppCompatActivity {
     EditText etEditItem;
@@ -22,7 +24,9 @@ public class EditItemActivity extends AppCompatActivity {
         etEditItem.setText(itemBody);
 
         // Set the cursor to the end
-        etEditItem.setSelection(itemBody.length());
+        if (itemBody.length() != 0){
+            etEditItem.setSelection(itemBody.length());
+        }
     }
 
     public void onSave(View view) {
