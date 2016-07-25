@@ -4,6 +4,10 @@ Simple ToDo app to explore the Android framework. Project checklist:
 - Does your app persist todo items and retrieve them properly on app restart? Yes
 - Did you successfully push your code to github? Can you see the code on github? Yes
 - Did you add a README.md to the repo on github which includes a GIF walkthrough of the app's functionality? Yes
+  Here is a gif containing the basic functioning of the App:
+
+  ![alt tag](https://raw.githubusercontent.com/droanr/android-todo/master/ToDoApp.gif)
+  
 - Did you create an issue on the repo and include /cc @codepathreview @codepath in the issue body? Yes
 
 Suggested Enhancements:
